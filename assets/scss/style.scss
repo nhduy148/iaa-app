@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import './base/index';
+@import './mixins/index';
+@import './layout/index';
+
+html,
+body {
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-weight: 400;
+  color: $black-color;
+  line-height: 1.5;
+  font-size: 14px;
+  @include breakpoint("md") {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+//  Common
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+
+.text {
+  &-uppercase {
+    text-transform: uppercase;
+  }
+  &-capitalize {
+    text-transform: capitalize;
+  }
+  &-lowercase {
+    text-transform: lowercase;
+  }
+  &-center {
+    text-align: center;
+  }  
+  &-left {
+    text-align: left;
+  }  
+  &-right {
+    text-align: right;
+  }
+  &-primary {
+    color: $primary-color;
+  }
+  &-white {
+    color: $white-color;
+  }
+  &-black {
+    color: $black-color;
+  }
+  &-black-light {
+    color: $black-color-light;
+  }
+  &-300 {
+    font-weight: 300;
+  }
+  &-400 {
+    font-weight: 400;
+  }
+  &-500 {
+    font-weight: 500;
+  }
+  &-600 {
+    font-weight: 600;
+  }
+}
+
+.fullheight {
+  height: 100%;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 20.8px;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.005em;
+  line-height: 130%;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  color: $primary-color;
+  border-color: $primary-color;
+  transition: color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  @include breakpoint('md') {
+    padding: 10px 25px;
+    font-size: 16px;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px transparentize($primary-color, 0.9);
+    outline: none;
+  }
+
+  &:hover {
+    color: $white-color;
+    background-color: $primary-color;
+  }
+
+  &--contained {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.typography {
+  line-height: 25px;
+  font-size: 16px;
+
+  @include breakpoint('md') {
+    font-size: 18px;
+  }
+
+  &-title {
+    font-size: 22px;
+
+    @include breakpoint('sm') {
+      font-size: 26px;
+    }
+
+    @include breakpoint('md') {
+      font-size: 30px;
+    }
+  }
+
+  &-label {
+    font-size: 16px;
+
+    @include breakpoint('sm') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('md') {
+      font-size: 20px;
+    }
+  }
+}
+
+//  Header
+.header {
+  $this: &;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: $white-color;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    height: 42px;
+
+    @include breakpoint('md') {
+      padding: 0;
+    }
+  }
+
+  .logo {
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    img {
+      max-height: 32px;
+    }
+
+    a {
+      display: block;
+      line-height: 0;
+    }
+  }
+}
+
+//Toggle menu button
+#toggle {
+  width: 30px;
+  position: relative;
+  z-index: 9999;
+  cursor: pointer;
+
+  >span {
+    width: 100%;
+    height: 2px;
+    display: block;
+    background: $primary-color;
+    margin: 5px auto;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+    border-radius: 3px;
+  }
+
+  &.on {
+    .one {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+
+    .two {
+      opacity: 0;
+    }
+
+    .three {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+  }
+}
+
+// Navigation bar
+.navbar {
+  $this: &;
+
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: 0.3s;
+
+  @include breakpoint('md') {
+    display: block;
+    position: static;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s;
+
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    padding-top: 90px;
+    background: $white-color;
+    width: 200px;
+    margin-left: -100%;
+
+    @include breakpoint('md') {
+      position: static;
+      flex-direction: row;
+      height: auto;
+      padding: 0;
+      width: auto;
+      background: transparent;
+      margin: 0;
+    }
+  }
+
+  &__item {
+    margin-bottom: 30px;
+
+    @include breakpoint('md') {
+      margin: 0 30px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__content {
+    position: relative;
+    font-size: 16px;
+    font-family: $second-font;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: $primary-color;
+    transition: color 0.3s;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      height: 2px;
+      background-color: $primary-color;
+      width: 0;
+      transition: 0.5s;
+      opacity: 0;
+    }
+
+    &:hover {
+      opacity: 0.9;
+
+      &::before {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    @include breakpoint('md') {
+      background-color: transparent;
+    }
+
+    #{$this}__list {
+      right: 0;
+    }
+  }
+
+  &__cta {
+    width: 140px;
+    height: 42px;
+    border-left: 1px solid $primary-color;
+    border-right: 1px solid $primary-color;
+  }
+}
+
+// Arrows
+.arrow {
+  cursor: pointer;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  transition: .3s;
+  @include breakpoint("md") {
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+  &--prev {
+    left: 5px;
+    @include breakpoint("md") {
+      left: -25px;
+    }
+  }
+  &--next {
+    right: 5px;
+    @include breakpoint("md") {
+      right: -25px;
+    }
+  }
+}
+
+.footer {
+  color: $black-color-light;
+  background: url(/assets/images/common/footer-bg.png) left bottom/cover;
+  &__top {
+    padding: 60px 0;
+    // background: #0f5880;
+    &-logo {
+      max-width: 120px;
+    }
+
+    ul {
+      margin-bottom: 20px;
+    }
+    ul, p {
+      color: $black-color-light;
+    }
+    li {
+      transition: .3s;
+      &:hover {
+        transform: translateX(5px);
+        color: $black-color;
+      }
+    }
+  }
+  .copyright {
+    padding: 10px 0;
+    background: #001D48;
+    color: $white-color-dark;
+  }
+}
+
+@import "./pages/home";

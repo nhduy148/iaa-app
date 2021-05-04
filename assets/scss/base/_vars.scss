@@ -1,0 +1,21 @@
+$primary-color: #38629F;
+$primary-color-dark: #001D48;
+$container-width: 1170px;
+$white-color: #FFFFFF;
+$white-color-dark: #CCC;
+$black-color: #000000;
+$black-color-light: rgba(0, 0, 0, 0.7);
+$primary-font: 'Saira Semi Condensed', sans-serif;
+$second-font: 'Alata', sans-serif;
+
+
+$cols: 12;
+$spacing: 4;
+
+$breakpoints: (
+  xs: 320px,
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1920px,
+) !default;
